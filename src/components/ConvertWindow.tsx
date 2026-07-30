@@ -134,7 +134,10 @@ function ConvertWindow() {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center bg-sky-200 border border-sky-400 text-sky-800 px-4 py-4 rounded-lg">
+      <h2 className="text-2xl font-bold mb-4">
+        Decimal to Decimal64 Converter
+      </h2>
       <InputWindow
         setDecimal={setDecimal}
         setExponentInput={setExponentInput}
@@ -143,7 +146,7 @@ function ConvertWindow() {
       {isComputed && (
         <ResultWindow binary={binary} hex={hex} specialCase={specialCase} />
       )}
-    </>
+    </div>
   );
 }
 
@@ -161,7 +164,7 @@ function InputWindow({
       <div className="flex items-center gap-1">
         <label htmlFor="decimal">Decimal:</label>
         <input
-          className="border border-gray-300 rounded-md px-2 ml-2"
+          className="border border-gray-300 rounded-md px-2 ml-2 bg-gray-100"
           type="string"
           id="decimal"
           onChange={(e) => {
@@ -170,7 +173,7 @@ function InputWindow({
         ></input>
         <span className="ml-2">× 10^</span>
         <input
-          className="border border-gray-300 rounded-md px-2 w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="border border-gray-300 bg-gray-100 rounded-md px-2 w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type="number"
           id="exponent"
           placeholder="0"
@@ -201,7 +204,7 @@ function ResultWindow({
   specialCase: string;
 }) {
   return (
-    <div className="flex flex-col items-center mt-6 w-full max-w-2xl">
+    <div className="flex flex-col items-center mt-4 w-full max-w-2xl">
       {specialCase && (
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mb-4 w-full text-center font-semibold">
           Special Case:
@@ -209,7 +212,7 @@ function ResultWindow({
         </div>
       )}
       <div className="w-full mb-3">
-        <label className="font-semibold text-sm text-gray-600">
+        <label className="font-semibold text-sm ">
           Binary{" "}
           <span className="font-normal italic">
             (sign | combination | continuation | coefficient DPD)
@@ -221,9 +224,7 @@ function ResultWindow({
         </p>
       </div>
       <div className="w-full mb-3">
-        <label className="font-semibold text-sm text-gray-600">
-          Hexadecimal:
-        </label>
+        <label className="font-semibold text-sm ">Hexadecimal:</label>
         <p className="font-mono text-sm bg-gray-100 p-3 rounded mt-1">
           0x{hex}
         </p>
