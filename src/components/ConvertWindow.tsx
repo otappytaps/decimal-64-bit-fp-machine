@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// TODO: add error checking, special cases, and finish the UI
 function ConvertWindow() {
   const [decimal, setDecimal] = useState("");
   const [binary, setBinary] = useState("");
