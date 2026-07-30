@@ -37,7 +37,7 @@ function ConvertWindow() {
       const result = signBit + "11111" + "1" + "0".repeat(57);
       setBinary(formatBinarySpaced(result));
       setHex(binaryToHex(result));
-      setSpecialCase("NaN - input is not a valid number");
+      setSpecialCase("NaN — input is not a valid number");
       setIsComputed(true);
       return;
     }
@@ -74,7 +74,7 @@ function ConvertWindow() {
       const result = signBit + "01000" + "10001110" + "0".repeat(50);
       setBinary(formatBinarySpaced(result));
       setHex(binaryToHex(result));
-      setSpecialCase("Underflow - value rounds to ±0");
+      setSpecialCase("Underflow — value rounds to ±0");
       setIsComputed(true);
       return;
     }
