@@ -6,30 +6,27 @@ function ConvertWindow() {
   const [binary, setBinary] = useState("");
   const [hex, setHex] = useState("");
   const [isComputed, setIsComputed] = useState(false);
-  const [spacedBinary, setSpacedBinary] = useState("");
   const [specialCase, setSpecialCase] = useState("");
   const [exponentInput, setExponentInput] = useState("");
 
+  function encodeDPD(d1: string, d2: string, d3: string) {
+    const to4Bit = (n: string) => parseInt(n, 10).toString(2).padStart(4, "0");
+    const [a, b, c, d] = to4Bit(d1);
+    const [e, f, g, h] = to4Bit(d2);
+    const [i, j, k, m] = to4Bit(d3);
+
+    const aei = a + e + i; // Checks the most significant bits of the 3 digits
+
+    if (aei === "000") return b + c + d + f + g + h + "0" + j + k + m;
+    if (aei === "001") return b + c + d + f + g + h + "1" + "00" + m;
+    if (aei === "010") return b + c + d + j + k + h + "1" + "01" + m;
+    if (aei === "011") return b + c + d + "10" + h + "1" + "11" + m;
+    if (aei === "100") return j + k + d + f + g + h + "1" + "10" + m;
+    if (aei === "101") return f + g + d + "01" + h + "1" + "11" + m;
+    if (aei === "110") return j + k + d + "00" + h + "1" + "11" + m;
+    if (aei === "111") return "00" + d + "11" + h + "1" + "11" + m;
+  }
   function compute() {
-    const encodeDPD = (d1: string, d2: string, d3: string) => {
-      const to4Bit = (n: string) =>
-        parseInt(n, 10).toString(2).padStart(4, "0");
-      const [a, b, c, d] = to4Bit(d1);
-      const [e, f, g, h] = to4Bit(d2);
-      const [i, j, k, m] = to4Bit(d3);
-
-      const aei = a + e + i; // Checks the most significant bits of the 3 digits
-
-      if (aei === "000") return b + c + d + f + g + h + "0" + j + k + m;
-      if (aei === "001") return b + c + d + f + g + h + "1" + "00" + m;
-      if (aei === "010") return b + c + d + j + k + h + "1" + "01" + m;
-      if (aei === "011") return b + c + d + "10" + h + "1" + "11" + m;
-      if (aei === "100") return j + k + d + f + g + h + "1" + "10" + m;
-      if (aei === "101") return f + g + d + "01" + h + "1" + "11" + m;
-      if (aei === "110") return j + k + d + "00" + h + "1" + "11" + m;
-      if (aei === "111") return "00" + d + "11" + h + "1" + "11" + m;
-    };
-
     // 1. Clean input and determine sign bit
     let str = String(decimal).trim();
     const signBit = str.startsWith("-") ? "1" : "0";
@@ -38,8 +35,7 @@ function ConvertWindow() {
     // NaN: input is not a valid decimal number
     if (!/^\d*\.?\d*$/.test(str) || str === "" || str === ".") {
       const result = signBit + "11111" + "1" + "0".repeat(57);
-      setBinary(result);
-      setSpacedBinary(formatBinarySpaced(result));
+      setBinary(formatBinarySpaced(result));
       setHex(binaryToHex(result));
       setSpecialCase("NaN - input is not a valid number");
       setIsComputed(true);
@@ -64,10 +60,11 @@ function ConvertWindow() {
     // Overflow: biased exponent exceeds Elimit (767) → Infinity
     if (E > 767) {
       const result = signBit + "11110" + "0".repeat(58);
-      setBinary(result);
-      setSpacedBinary(formatBinarySpaced(result));
+      setBinary(formatBinarySpaced(result));
       setHex(binaryToHex(result));
-      setSpecialCase(signBit === "1" ? "Negative Infinity (-∞)" : "Positive Infinity (+∞)");
+      setSpecialCase(
+        signBit === "1" ? "Negative Infinity (-∞)" : "Positive Infinity (+∞)",
+      );
       setIsComputed(true);
       return;
     }
@@ -75,8 +72,7 @@ function ConvertWindow() {
     // Underflow: biased exponent below 0 → rounds to ±0
     if (E < 0) {
       const result = signBit + "01000" + "10001110" + "0".repeat(50);
-      setBinary(result);
-      setSpacedBinary(formatBinarySpaced(result));
+      setBinary(formatBinarySpaced(result));
       setHex(binaryToHex(result));
       setSpecialCase("Underflow - value rounds to ±0");
       setIsComputed(true);
@@ -110,8 +106,7 @@ function ConvertWindow() {
     // 6. Assemble and update state
     const result = signBit + comb + E_cont8 + coeff_cont50;
 
-    setBinary(result);
-    setSpacedBinary(formatBinarySpaced(result));
+    setBinary(formatBinarySpaced(result));
     setHex(binaryToHex(result));
     setSpecialCase("");
     setIsComputed(true);
@@ -131,21 +126,22 @@ function ConvertWindow() {
   function binaryToHex(bin: string): string {
     let hexStr = "";
     for (let i = 0; i < bin.length; i += 4) {
-      hexStr += parseInt(bin.substring(i, i + 4), 2).toString(16).toUpperCase();
+      hexStr += parseInt(bin.substring(i, i + 4), 2)
+        .toString(16)
+        .toUpperCase();
     }
     return hexStr;
   }
 
   return (
     <>
-      <InputWindow setDecimal={setDecimal} setExponentInput={setExponentInput} compute={compute} />
+      <InputWindow
+        setDecimal={setDecimal}
+        setExponentInput={setExponentInput}
+        compute={compute}
+      />
       {isComputed && (
-        <ResultWindow
-          binary={binary}
-          spacedBinary={spacedBinary}
-          hex={hex}
-          specialCase={specialCase}
-        />
+        <ResultWindow binary={binary} hex={hex} specialCase={specialCase} />
       )}
     </>
   );
@@ -174,7 +170,7 @@ function InputWindow({
         ></input>
         <span className="ml-2">× 10^</span>
         <input
-          className="border border-gray-300 rounded-md px-2 w-20"
+          className="border border-gray-300 rounded-md px-2 w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type="number"
           id="exponent"
           placeholder="0"
@@ -197,12 +193,10 @@ function InputWindow({
 
 function ResultWindow({
   binary,
-  spacedBinary,
   hex,
   specialCase,
 }: {
   binary: string;
-  spacedBinary: string;
   hex: string;
   specialCase: string;
 }) {
@@ -210,22 +204,29 @@ function ResultWindow({
     <div className="flex flex-col items-center mt-6 w-full max-w-2xl">
       {specialCase && (
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mb-4 w-full text-center font-semibold">
-          Special Case: {specialCase}
+          Special Case:
+          <span className="font-normal"> {specialCase} </span>
         </div>
       )}
       <div className="w-full mb-3">
-        <label className="font-semibold text-sm text-gray-600">Binary (raw):</label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">{binary}</p>
+        <label className="font-semibold text-sm text-gray-600">
+          Binary{" "}
+          <span className="font-normal italic">
+            (sign | combination | continuation | coefficient DPD)
+          </span>
+          :
+        </label>
+        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
+          {binary}
+        </p>
       </div>
       <div className="w-full mb-3">
         <label className="font-semibold text-sm text-gray-600">
-          Binary (spaced - Sign | Combination | Exp Cont | DPD Groups):
+          Hexadecimal:
         </label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">{spacedBinary}</p>
-      </div>
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm text-gray-600">Hexadecimal:</label>
-        <p className="font-mono text-sm bg-gray-100 p-3 rounded mt-1">0x{hex}</p>
+        <p className="font-mono text-sm bg-gray-100 p-3 rounded mt-1">
+          0x{hex}
+        </p>
       </div>
     </div>
   );
