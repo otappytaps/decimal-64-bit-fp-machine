@@ -1,6 +1,7 @@
 import Banner from "./Banner.tsx";
 import ConvertWindow from "./ConvertWindow.tsx";
 import RoundingWindow from "./RoundingWindow.tsx";
+import ArithmeticWindow from "./ArithmeticWindow.tsx";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <ConvertWindow />
       <hr className="w-full max-w-2xl border-gray-300 my-8" />
       <RoundingWindow />
+      <hr className="w-full max-w-2xl border-gray-300 my-8" />
+      <ArithmeticWindow />
     </div>
   );
 }
