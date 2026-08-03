@@ -27,6 +27,8 @@ function ConvertWindow() {
   }
   function compute() {
     // 1. Clean input and determine sign bit
+
+    if (decimal === "") return;
     let str = String(decimal).trim();
     const signBit = str.startsWith("-") ? "1" : "0";
     if (str.startsWith("-") || str.startsWith("+")) str = str.substring(1);
@@ -133,17 +135,17 @@ function ConvertWindow() {
   }
 
   return (
-    <div className="flex flex-col items-center bg-sky-200 border border-sky-400 text-sky-800 px-4 py-4 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">
-        Decimal to Decimal64 Converter
-      </h2>
+    <div className="cyber-panel flex flex-col items-center w-full max-w-3xl mx-auto">
+      <h2 className="cyber-panel-title">Decimal to Decimal64 Converter</h2>
       <InputWindow
         setDecimal={setDecimal}
         setExponentInput={setExponentInput}
         compute={compute}
       />
       {isComputed && (
-        <ResultWindow binary={binary} hex={hex} specialCase={specialCase} />
+        <div className="mt-6">
+          <ResultWindow binary={binary} hex={hex} specialCase={specialCase} />
+        </div>
       )}
     </div>
   );
@@ -159,35 +161,44 @@ function InputWindow({
   compute: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex items-center gap-1">
-        <label htmlFor="decimal">Decimal:</label>
-        <input
-          className="border border-gray-300 rounded-md px-2 ml-2 bg-gray-100"
-          type="string"
-          id="decimal"
-          onChange={(e) => {
-            setDecimal(e.target.value);
-          }}
-        ></input>
-        <span className="ml-2">× 10^</span>
-        <input
-          className="border border-gray-300 bg-gray-100 rounded-md px-2 w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          type="number"
-          id="exponent"
-          placeholder="0"
-          onChange={(e) => {
-            setExponentInput(e.target.value);
-          }}
-        />
+    <div className="flex flex-col items-center w-full gap-4">
+      <div className="flex flex-col md:flex-row items-center gap-4 w-full">
+        <div className="flex flex-col gap-2 w-full md:w-1/2">
+          <label className="cyber-label-form">Decimal Input</label>
+          <div className="flex items-center gap-2">
+            <input
+              className="cyber-input w-full"
+              type="text"
+              id="decimal"
+              placeholder="e.g. 3.14159 or -123.45"
+              onChange={(e) => {
+                setDecimal(e.target.value);
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 w-full md:w-1/4">
+          <label className="cyber-label-form">Exponent ×10^</label>
+          <input
+            className="cyber-input [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            type="number"
+            id="exponent"
+            placeholder="0"
+            onChange={(e) => {
+              setExponentInput(e.target.value);
+            }}
+          />
+        </div>
       </div>
+
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4"
+        className="cyber-button mb-6"
         onClick={() => {
           compute();
         }}
       >
-        Convert
+        Compute
       </button>
     </div>
   );
@@ -203,30 +214,39 @@ function ResultWindow({
   specialCase: string;
 }) {
   return (
-    <div className="flex flex-col items-center mt-4 w-full max-w-2xl">
+    <div className="flex flex-col items-center w-full max-w-3xl">
+      {/* Special case banner */}
       {specialCase && (
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mb-4 w-full text-center font-semibold">
-          Special Case:
-          <span className="font-normal"> {specialCase} </span>
+        <div className="cyber-alert mt-4 mb-4 w-full">
+          <span className="font-bold text-pink-400 mr-2">⚠ SPECIAL CASE:</span>
+          {specialCase}
         </div>
       )}
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">
+
+      {/* Binary section */}
+      <div className="w-full mb-6">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-cyan-400">●</span>
           Binary{" "}
-          <span className="font-normal italic">
+          <span className="text-xs opacity-50 font-normal">
             (sign | combination | continuation | coefficient DPD)
           </span>
           :
         </label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
+        <pre className="cyber-mono break-all font-bold text-cyan-300/80 text-xs">
           {binary}
-        </p>
+        </pre>
       </div>
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">Hexadecimal:</label>
-        <p className="font-mono text-sm bg-gray-100 p-3 rounded mt-1">
+
+      {/* Hex section */}
+      <div className="w-full mb-6">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-purple-400">●</span>
+          Hexadecimal:
+        </label>
+        <pre className="cyber-mono break-all font-bold text-purple-300/80 text-xs">
           0x{hex}
-        </p>
+        </pre>
       </div>
     </div>
   );

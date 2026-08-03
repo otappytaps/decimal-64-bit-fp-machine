@@ -138,6 +138,11 @@ function RoundingWindow() {
   }
 
   function compute() {
+    // If all inputs are blank, do nothing (no calculation, no error)
+    if (inputValue === "" && targetDigits === "") {
+      return;
+    }
+
     if (
       targetDigits === "" ||
       !Number.isInteger(Number(targetDigits)) ||
@@ -187,8 +192,10 @@ function RoundingWindow() {
   }
 
   return (
-    <div className="flex flex-col items-center mt-8 w-full max-w-2xl bg-sky-200 border border-sky-400 text-sky-800 px-4 py-4 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Rounding Methods</h2>
+    <div className="cyber-panel flex flex-col items-center w-full max-w-3xl mx-auto">
+      <h2 className="cyber-panel-title">
+        Rounding Methods
+      </h2>
       <InputWindow
         inputFormat={inputFormat}
         setInputFormat={setInputFormat}
@@ -230,13 +237,14 @@ function InputWindow({
 }) {
   return (
     <div className="flex flex-col gap-4 w-full">
+      {/* Format selector */}
       <div className="flex items-center gap-2">
-        <label htmlFor="roundFormat" className="font-semibold text-sm w-32">
+        <label htmlFor="roundFormat" className="cyber-label w-32">
           Input Format:
         </label>
         <select
           id="roundFormat"
-          className="border border-gray-300 bg-gray-100 rounded-md px-2 py-1 flex-1"
+          className="cyber-input flex-1"
           value={inputFormat}
           onChange={(e) =>
             setInputFormat(e.target.value as "decimal" | "binary")
@@ -246,13 +254,15 @@ function InputWindow({
           <option value="binary">Binary</option>
         </select>
       </div>
+
+      {/* Number input */}
       <div className="flex items-center gap-2">
-        <label htmlFor="roundInput" className="font-semibold text-sm w-32">
+        <label htmlFor="roundInput" className="cyber-label w-32">
           Number:
         </label>
         <input
           id="roundInput"
-          className="border border-gray-300 bg-gray-100 rounded-md px-2 py-1 flex-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="cyber-input flex-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type="number"
           placeholder={
             inputFormat === "decimal" ? "e.g. 3.14159" : "e.g. 1101.0101"
@@ -261,13 +271,15 @@ function InputWindow({
           onChange={(e) => setInputValue(e.target.value)}
         />
       </div>
+
+      {/* Target digits */}
       <div className="flex items-center gap-2">
-        <label htmlFor="targetDigits" className="font-semibold text-sm w-32">
+        <label htmlFor="targetDigits" className="cyber-label w-32">
           Target Digits:
         </label>
         <input
           id="targetDigits"
-          className="border border-gray-300 bg-gray-100 rounded-md px-2 py-1 flex-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="cyber-input flex-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type="number"
           min="1"
           placeholder="Number of digits to round to"
@@ -275,8 +287,9 @@ function InputWindow({
           onChange={(e) => setTargetDigits(e.target.value)}
         />
       </div>
+
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-2 self-center"
+        className="cyber-button mb-6 self-center"
         onClick={() => {
           compute();
         }}
@@ -299,32 +312,47 @@ function ResultWindow({
   roundNTEValue: string;
 }) {
   return (
-    <div className="flex flex-col items-center mt-4 w-full max-w-2xl">
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">Chopped:</label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
-          {choppedValue}
-        </p>
-      </div>
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">Rounded Up:</label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
-          {roundUpValue}
-        </p>
-      </div>
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">Rounded Down:</label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
-          {roundDownValue}
-        </p>
-      </div>
-      <div className="w-full mb-3">
-        <label className="font-semibold text-sm ">
-          Rounded to Nearest Ties to Even:
+    <div className="flex flex-col items-center mt-6 w-full">
+      {/* Chopped */}
+      <div className="w-full mb-4">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-cyan-400">Chopped:</span>
         </label>
-        <p className="font-mono text-sm break-all bg-gray-100 p-3 rounded mt-1">
+        <pre className="cyber-mono break-all font-bold text-cyan-300/80 text-xs">
+          {choppedValue}
+        </pre>
+      </div>
+
+      {/* Rounded Up */}
+      <div className="w-full mb-3">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-pink-400">Rounded Up:</span>
+        </label>
+        <pre className="cyber-mono break-all font-bold text-pink-300/80 text-xs">
+          {roundUpValue}
+        </pre>
+      </div>
+
+      {/* Rounded Down */}
+      <div className="w-full mb-3">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-purple-400">Rounded Down:</span>
+        </label>
+        <pre className="cyber-mono break-all font-bold text-purple-300/80 text-xs">
+          {roundDownValue}
+        </pre>
+      </div>
+
+      {/* Rounded to Nearest Ties to Even */}
+      <div className="w-full mb-3">
+        <label className="cyber-label flex items-center gap-2">
+          <span className="text-emerald-400">
+            Rounded to Nearest Ties to Even:
+          </span>
+        </label>
+        <pre className="cyber-mono break-all font-bold text-emerald-300/80 text-xs">
           {roundNTEValue}
-        </p>
+        </pre>
       </div>
     </div>
   );
@@ -332,9 +360,11 @@ function ResultWindow({
 
 function ErrorMsg({ errorText }: { errorText: string }) {
   return (
-    <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded mt-4  w-full text-center font-semibold">
-      Error: <span className="font-normal">{errorText}</span>
+    <div className="cyber-alert mt-4 mb-4 w-full">
+      <span className="font-bold text-pink-400 mr-2">⚠ ERROR:</span>
+      {errorText}
     </div>
   );
 }
+
 export default RoundingWindow;
