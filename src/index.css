@@ -58,7 +58,6 @@ body {
   background-size: 200% 200%;
   animation: bgMove 18s ease-in-out infinite;
 
-  /* Bright text for readability */
   color: rgb(200, 208, 232);
 }
 
@@ -74,7 +73,7 @@ body {
   }
 }
 
-/* Ambient glow */
+/* Glow */
 body::before {
   content: "";
   position: fixed;
