@@ -30,7 +30,7 @@ function ArithmeticWindow() {
   // ── Compute ──────────────────────────────────────────────
   function compute() {
     // If both operands are blank, do nothing (no calculation)
-    if (operandA.trim() === '' && operandB.trim() === '') {
+    if (operandA.trim() === "" && operandB.trim() === "") {
       return; // Exit early – nothing to compute
     }
 
@@ -201,9 +201,8 @@ function ArithmeticWindow() {
               setOperation(e.target.value as "subtraction" | "division")
             }
           >
-            <option value="subtraction">
-              Subtraction (A − B) | Division (A ÷ B)
-            </option>
+            <option value="subtraction">Subtraction (A − B)</option>
+            <option value="division">Division (A ÷ B)</option>
           </select>
         </div>
 
