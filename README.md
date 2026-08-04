@@ -75,8 +75,8 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 | **Decimal Division Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 22`<br>`Operand B: 7` | ![Test 26 Input](SCREENSHOTS/GRS/GRS-3-INPUT.png)<br>![Test 26 Output](SCREENSHOTS/GRS/GRS-3-OUTPUT.png) |
 | **Hexadecimal Division Input** | `Input Format: Hexadecimal`<br>`Operation: Division`<br>`Operand A: 2A01000000000000`<br>`Operand B: 3DFC000000000000` | ![Test 27 Input](SCREENSHOTS/GRS/GRS-4-INPUT.png)<br>![Test 27 Output](SCREENSHOTS/GRS/GRS-4-OUTPUT.png) |
 | **Number Subtracted by Itself Input** | `Input Format: Decimal`<br>`Operation: Subtraction`<br>`Operand A: 1`<br>`Operand B: 1` | ![Test 28 Input](SCREENSHOTS/GRS/GRS-5-INPUT.png)<br>![Test 28 Output](SCREENSHOTS/GRS/GRS-5-OUTPUT.png) |
-| **Zero Divided by Any Number Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 0`<br>`Operand B: 1` | ![Test 29 Input](SCREENSHOTS/GRS/GRS-6-INPUT.png) |
-| **Any Number Divided by Zero Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: `<br>`Operand B: ` | ![Test 30 Input](SCREENSHOTS/GRS/GRS-7-INPUT.png) |
+| **Zero Divided by Any Number Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 0`<br>`Operand B: 1` | ![Test 29 Input](SCREENSHOTS/GRS/GRS-6.png) |
+| **Any Number Divided by Zero Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: `<br>`Operand B: ` | ![Test 30 Input](SCREENSHOTS/GRS/GRS-7.png) |
 
 ## VIDEO WALKTHROUGH
 
