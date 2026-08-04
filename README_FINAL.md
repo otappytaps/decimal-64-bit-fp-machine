@@ -373,7 +373,7 @@ inputs, call the appropriate algorithm, and render the results.
 - Documented local installation, execution, input rules, limitations, and
   project structure.
 
-## Current Limitations and Pending Work
+## Current Limitations
 
 - The converter truncates coefficients longer than 16 digits instead of
   rounding them.
@@ -384,8 +384,6 @@ inputs, call the appropriate algorithm, and render the results.
 - IEEE-hexadecimal operands must be exactly 16 characters (64 bits).
 - Per-step animation is not included; the complete states are presented in
   step tables instead.
-- A live website deployment link is still pending.
-- Repository visibility should be confirmed before final submission.
 
 ## Completed Checking
 
