@@ -53,18 +53,18 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 | Test Case Name | Input | Screenshot |
 | :--- | :--- | :---: |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 12](SCREENSHOTS/ROUNDING/Rounding-1.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 13](SCREENSHOTS/ROUNDING/Rounding-2.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 14](SCREENSHOTS/ROUNDING/Rounding-3.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 15](SCREENSHOTS/ROUNDING/Rounding-4.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 16](SCREENSHOTS/ROUNDING/Rounding-5.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 17](SCREENSHOTS/ROUNDING/Rounding-6.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 18](SCREENSHOTS/ROUNDING/Rounding-7.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 19](SCREENSHOTS/ROUNDING/Rounding-8.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 20](SCREENSHOTS/ROUNDING/Rounding-9.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 21](SCREENSHOTS/ROUNDING/Rounding-10.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 22](SCREENSHOTS/ROUNDING/Rounding-11.png) |
-| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 23](SCREENSHOTS/ROUNDING/Rounding-12.png) |
+| **Postive Decimal Input** | `Input Format: Decimal`<br>`Number: 1.55`<br>`Target Digits: 1` | ![Test 12](SCREENSHOTS/ROUNDING/Rounding-1.png) |
+| **Negative Decimal Input** | `Input Format: Decimal`<br>`Number: -1.55`<br>`Target Digits: 1` | ![Test 13](SCREENSHOTS/ROUNDING/Rounding-2.png) |
+| **Ties-to-Even Input 1** | `Input Format: Decimal`<br>`Number: 2.5`<br>`Target Digits: 0` | ![Test 14](SCREENSHOTS/ROUNDING/Rounding-3.png) |
+| **Ties-to-Even Input 2** | `Input Format: Decimal`<br>`Number: 3.5`<br>`Target Digits: 0` | ![Test 15](SCREENSHOTS/ROUNDING/Rounding-4.png) |
+| **Postive Binary Input** | `Input Format: Binary`<br>`Number: 10.01`<br>`Target Digits: 0` | ![Test 16](SCREENSHOTS/ROUNDING/Rounding-5.png) |
+| **Negative Binary Input** | `Input Format: Binary`<br>`Number: -10.01`<br>`Target Digits: 0` | ![Test 17](SCREENSHOTS/ROUNDING/Rounding-6.png) |
+| **Postive Decimal Input Rounded To 0** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 0` | ![Test 18](SCREENSHOTS/ROUNDING/Rounding-7.png) |
+| **Postive Decimal Input Rounded To 1** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 1` | ![Test 19](SCREENSHOTS/ROUNDING/Rounding-8.png) |
+| **Postive Decimal Input Rounded To 2** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 2` | ![Test 20](SCREENSHOTS/ROUNDING/Rounding-9.png) |
+| **Postive Decimal Input Rounded To 3** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 3` | ![Test 21](SCREENSHOTS/ROUNDING/Rounding-10.png) |
+| **Postive Decimal Input Rounded To 4 (ERROR)** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 4` | ![Test 22](SCREENSHOTS/ROUNDING/Rounding-11.png) |
+| **Postive Decimal Input Rounded To -1 (ERROR)** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: -1` | ![Test 23](SCREENSHOTS/ROUNDING/Rounding-12.png) |
 
 
 ## VIDEO WALKTHROUGH
