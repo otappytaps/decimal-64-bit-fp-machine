@@ -70,7 +70,13 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 | Test Case Name | Inputs | Screenshot |
 | :--- | :--- | :---: |
-| **Decimal Subtraction Input** | `Input Format: `<br>`Operation: `<br>`Operand A: `<br>`Operand B: ` | ![Test 24 Input](SCREENSHOTS/GRS/GRS-1-INPUT.png)<br>![Test 24 Output](SCREENSHOTS/GRS/GRS-1-OUTPUT.png) |
+| **Decimal Subtraction Input** | `Input Format: Decimal`<br>`Operation: Subtraction`<br>`Operand A: 654321.5432`<br>`Operand B: 654321.1000` | ![Test 24 Input](SCREENSHOTS/GRS/GRS-1-INPUT.png)<br>![Test 24 Output](SCREENSHOTS/GRS/GRS-1-OUTPUT.png) |
+| **Hexadecimal Subtraction Input** | `Input Format: Hexadecimal`<br>`Operation: Subtraction`<br>`Operand A: 3A12C34563200000`<br>`Operand B: 3A12C34440000000` | ![Test 25 Input](SCREENSHOTS/GRS/GRS-2-INPUT.png)<br>![Test 25 Output](SCREENSHOTS/GRS/GRS-2-OUTPUT.png) |
+| **Decimal Division Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 22`<br>`Operand B: 7` | ![Test 26 Input](SCREENSHOTS/GRS/GRS-3-INPUT.png)<br>![Test 26 Output](SCREENSHOTS/GRS/GRS-3-OUTPUT.png) |
+| **Hexadecimal Division Input** | `Input Format: Hexadecimal`<br>`Operation: Division`<br>`Operand A: 2A01000000000000`<br>`Operand B: 3DFC000000000000` | ![Test 27 Input](SCREENSHOTS/GRS/GRS-4-INPUT.png)<br>![Test 27 Output](SCREENSHOTS/GRS/GRS-4-OUTPUT.png) |
+| **Number Subtracted by Itself Input** | `Input Format: Decimal`<br>`Operation: Subtraction`<br>`Operand A: 1`<br>`Operand B: 1` | ![Test 28 Input](SCREENSHOTS/GRS/GRS-5-INPUT.png)<br>![Test 28 Output](SCREENSHOTS/GRS/GRS-5-OUTPUT.png) |
+| **Zero Divided by Any Number Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 0`<br>`Operand B: 1` | ![Test 29 Input](SCREENSHOTS/GRS/GRS-6-INPUT.png) |
+| **Any Number Divided by Zero Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: `<br>`Operand B: ` | ![Test 30 Input](SCREENSHOTS/GRS/GRS-7-INPUT.png) |
 
 ## VIDEO WALKTHROUGH
 
