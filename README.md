@@ -37,7 +37,17 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 | Test Case Name | Input | Screenshot |
 | :--- | :--- | :---: |
-| **Valid Input 1** | `Decimal Input: 7531123456574426`<br>`Exponent: 20` | ![Test 1](SCREENSHOTS/DECIMAL64/Decimal64-1.png) |
+| **Postive Input** | `Decimal Input: 7531123456574426`<br>`Exponent: 20` | ![Test 1](SCREENSHOTS/DECIMAL64/Decimal64-1.png) |
+| **Negative Input 1** | `Decimal Input: -8765432345678100`<br>`Exponent: -20` | ![Test 2](SCREENSHOTS/DECIMAL64/Decimal64-2.png) |
+| **Negative Input 2** | `Decimal Input:  -0000000001234567`<br>`Exponent: 9` | ![Test 3](SCREENSHOTS/DECIMAL64/Decimal64-3.png) |
+| **Different Input 1** | `Decimal Input: 9.875625`<br>`Exponent: 0` | ![Test 4](SCREENSHOTS/DECIMAL64/Decimal64-4.png) |
+| **Different Input 2** | `Decimal Input: 98.75625`<br>`Exponent: -1` | ![Test 5](SCREENSHOTS/DECIMAL64/Decimal64-5.png) |
+| **Maximum Exponent Input** | `Decimal Input: 1`<br>`Exponent: 369` | ![Test 6](SCREENSHOTS/DECIMAL64/Decimal64-6.png) |
+| **Minimum Exponent Input** | `Decimal Input: 1`<br>`Exponent: -398` | ![Test 7](SCREENSHOTS/DECIMAL64/Decimal64-7.png) |
+| **Positive Infinity Input** | `Decimal Input: 1`<br>`Exponent: 370` | ![Test 8](SCREENSHOTS/DECIMAL64/Decimal64-8.png) |
+| **Underflow Input** | `Decimal Input: 1`<br>`Exponent: -399` | ![Test 9](SCREENSHOTS/DECIMAL64/Decimal64-9.png) |
+| **String Input** | `Decimal Input: Hello World`<br>`Exponent: 1` | ![Test 10](SCREENSHOTS/DECIMAL64/Decimal64-10.png) |
+| **Input With One Letter** | `Decimal Input: 7531123B56574426`<br>`Exponent: 20` | ![Test 11](SCREENSHOTS/DECIMAL64/Decimal64-11.png) |
 
 ## VIDEO WALKTHROUGH
 
