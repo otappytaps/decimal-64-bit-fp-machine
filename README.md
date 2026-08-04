@@ -31,6 +31,14 @@ If you are developing a production application, we recommend enabling type-aware
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
 
+## Test Cases
+
+### 1. Convert decimal to decimal-based double-precision
+
+| Test Case Name | Input | Screenshot |
+| :--- | :--- | :---: |
+| **Valid Input 1** | `Decimal Input: 7531123456574426`<br>`Exponent: 20` | ![Test 1](SCREENSHOTS/DECIMAL64/Decimal64-1.png) |
+
 ## VIDEO WALKTHROUGH
 
 The YouTube link for the video walkthrough of the project can be found [here](https://youtu.be/74KgVZBTCjI).
