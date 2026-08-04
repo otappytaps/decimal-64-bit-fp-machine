@@ -35,7 +35,7 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ### 1. Convert Decimal to Decimal-Based Double-Precision
 
-| Test Case Name | Input | Screenshot |
+| Test Case Name | Inputs | Screenshot |
 | :--- | :--- | :---: |
 | **Postive Input** | `Decimal Input: 7531123456574426`<br>`Exponent: 20` | ![Test 1](SCREENSHOTS/DECIMAL64/Decimal64-1.png) |
 | **Negative Input 1** | `Decimal Input: -8765432345678100`<br>`Exponent: -20` | ![Test 2](SCREENSHOTS/DECIMAL64/Decimal64-2.png) |
@@ -51,7 +51,7 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ### 2. Demonstrate Rounding Methods
 
-| Test Case Name | Input | Screenshot |
+| Test Case Name | Inputs | Screenshot |
 | :--- | :--- | :---: |
 | **Postive Decimal Input** | `Input Format: Decimal`<br>`Number: 1.55`<br>`Target Digits: 1` | ![Test 12](SCREENSHOTS/ROUNDING/Rounding-1.png) |
 | **Negative Decimal Input** | `Input Format: Decimal`<br>`Number: -1.55`<br>`Target Digits: 1` | ![Test 13](SCREENSHOTS/ROUNDING/Rounding-2.png) |
@@ -66,6 +66,11 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 | **Postive Decimal Input Rounded To 4 (ERROR)** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: 4` | ![Test 22](SCREENSHOTS/ROUNDING/Rounding-11.png) |
 | **Postive Decimal Input Rounded To -1 (ERROR)** | `Input Format: Decimal`<br>`Number: 123.456`<br>`Target Digits: -1` | ![Test 23](SCREENSHOTS/ROUNDING/Rounding-12.png) |
 
+### 3. Perform Arithmetic Operations (Subtraction and Division) Using GRS Method
+
+| Test Case Name | Inputs | Screenshot |
+| :--- | :--- | :---: |
+| **Decimal Subtraction Input** | `Input Format: `<br>`Operation: `<br>`Operand A: `<br>`Operand B: ` | ![Test 24 Input](SCREENSHOTS/GRS/GRS-1-INPUT.png)<br>![Test 24 Output](SCREENSHOTS/GRS/GRS-1-OUTPUT.png) |
 
 ## VIDEO WALKTHROUGH
 
