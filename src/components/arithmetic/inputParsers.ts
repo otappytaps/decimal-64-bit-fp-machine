@@ -1,7 +1,14 @@
+// inputParsers.ts
+// Overview:
+// Parses user input strings into ParsedOperand objects for arithmetic operations.
+// Supports two input formats:
+//   - Decimal: "123.456" or "-1.23e5"
+//   - Hexadecimal: 16-character IEEE 754 hex string (64 bits)
+
 import type { ParsedOperand } from "./types";
 import { parseBinary64 } from "./decimal64Codec";
 
-/** Parse decimal string like "123.456" or "-1.234e5" → { sign, coeff16, exponent } */
+/** Parse a decimal string like "123.456" or "-1.234e5" → sign, 16-digit coeff, exponent */
 export function parseDecimalInput(raw: string): {
     sign: number;
     coeff16: string;
@@ -13,6 +20,7 @@ export function parseDecimalInput(raw: string): {
     const sign = str.startsWith("-") ? 1 : 0;
     let s = str.replace(/^[+-]/, "");
 
+    // Extract explicit exponent if present (e.g., "e5" or "E-3")
     let expOffset = 0;
     const eIdx = s.toLowerCase().indexOf("e");
     if (eIdx !== -1) {
@@ -20,6 +28,7 @@ export function parseDecimalInput(raw: string): {
         s = s.substring(0, eIdx);
     }
 
+    // Validate: must be digits with optional decimal point
     if (!/^\d*\.?\d*$/.test(s) || s === "" || s === ".") {
         return {
             sign: 0,
@@ -30,16 +39,20 @@ export function parseDecimalInput(raw: string): {
         };
     }
 
+    // Split into integer and fractional parts
     const [intPart = "0", fracPart = ""] = s.split(".");
+    // Combine and strip leading zeros (but keep at least one digit)
     let coeff = (intPart + fracPart).replace(/^0+/, "") || "0";
+    // Exponent = -frac digits + explicit exponent offset
     let exponent = -fracPart.length + expOffset;
 
+    // Truncate or pad coefficient to exactly 16 digits
     if (coeff.length > 16) {
         exponent += coeff.length - 16;
         coeff = coeff.substring(0, 16);
     }
-
     const coeff16 = coeff.padStart(16, "0");
+
     return { sign, coeff16, exponent, ok: true };
 }
 
@@ -53,6 +66,7 @@ export function parseHexInput(raw: string): { bin: string; ok: boolean; error?: 
             error: "IEEE hex must be exactly 16 hexadecimal characters (64 bits)",
         };
     }
+    // Convert each hex digit to 4-bit binary, concatenate
     const bin = s
         .split("")
         .map((c) => parseInt(c, 16).toString(2).padStart(4, "0"))
@@ -63,6 +77,7 @@ export function parseHexInput(raw: string): { bin: string; ok: boolean; error?: 
 /** Parse user input (decimal or IEEE hex) → ParsedOperand */
 export function parseOperand(raw: string, format: "decimal" | "hex"): ParsedOperand {
     if (format === "hex") {
+        // Hex path: parse hex → binary → decode with decimal64Codec
         const { bin, ok, error } = parseHexInput(raw);
         if (!ok) {
             return {
@@ -81,6 +96,7 @@ export function parseOperand(raw: string, format: "decimal" | "hex"): ParsedOper
             binStr: bin,
         };
     } else {
+        // Decimal path: parse decimal string directly
         const { sign, coeff16, exponent, ok, error } = parseDecimalInput(raw);
         if (!ok) {
             return {

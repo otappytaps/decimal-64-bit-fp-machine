@@ -1,3 +1,9 @@
+// ArithmeticWindow.tsx
+// Overview:
+// Component for performing Decimal64 arithmetic operations (subtraction and division).
+// Shows step-by-step solutions with GRS (Guard, Round, Sticky) digit tracking.
+// Allows input in decimal or hexadecimal format.
+
 import { useState } from "react";
 import {
   type Step,
@@ -18,6 +24,7 @@ interface ArithResult {
   specialCase: string;
 }
 
+// Main arithmetic operations component
 function ArithmeticWindow() {
   const [inputFormat, setInputFormat] = useState<"decimal" | "hex">("decimal");
   const [operandA, setOperandA] = useState("");
@@ -27,14 +34,13 @@ function ArithmeticWindow() {
   );
   const [result, setResult] = useState<ArithResult | null>(null);
   const [error, setError] = useState("");
-  // ── Compute ──────────────────────────────────────────────
-  function compute() {
-    // If both operands are blank, do nothing (no calculation)
-    if (operandA.trim() === "" && operandB.trim() === "") {
-      return; // Exit early – nothing to compute
-    }
 
-    // existing validation and processing logic follows...
+  // Perform calculation based on current inputs
+  function compute() {
+    // Exit early if both operands are blank
+    if (operandA.trim() === "" && operandB.trim() === "") {
+      return;
+    }
 
     const a = parseOperand(operandA, inputFormat);
     const b = parseOperand(operandB, inputFormat);
@@ -54,7 +60,7 @@ function ArithmeticWindow() {
       finalCoeff = "0000000000000000",
       finalExp = 0;
 
-    // ── Special cases: NaN / Infinity ──────────────────────
+    // Handle special cases: NaN / Infinity
     if (a.isNaN || b.isNaN) {
       specialCase = "NaN — one or both operands is NaN";
       allSteps = [{ label: "Special Case — NaN", detail: specialCase }];
@@ -170,7 +176,7 @@ function ArithmeticWindow() {
 
       {/* Input controls */}
       <div className="flex flex-col gap-4 w-full">
-        {/* Input format */}
+        {/* Input format selector */}
         <div className="flex items-center gap-2">
           <label htmlFor="arithFormat" className="cyber-label-form">
             Input Format:
@@ -188,7 +194,7 @@ function ArithmeticWindow() {
           </select>
         </div>
 
-        {/* Operation */}
+        {/* Operation selector */}
         <div className="flex items-center gap-2">
           <label htmlFor="arithOp" className="cyber-label-form">
             Operation:
@@ -206,7 +212,7 @@ function ArithmeticWindow() {
           </select>
         </div>
 
-        {/* Operand A */}
+        {/* Operand A input */}
         <div className="flex items-center gap-2">
           <label htmlFor="arithA" className="cyber-label-form">
             Operand A:
@@ -225,7 +231,7 @@ function ArithmeticWindow() {
           />
         </div>
 
-        {/* Operand B */}
+        {/* Operand B input */}
         <div className="flex items-center gap-2">
           <label htmlFor="arithB" className="cyber-label-form">
             Operand B:

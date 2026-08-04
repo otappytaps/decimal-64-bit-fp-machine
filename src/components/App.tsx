@@ -1,8 +1,15 @@
+// App.tsx
+// Overview:
+// Main application container that orchestrates the three primary components:
+// Decimal64 converter, arithmetic operations, and rounding methods.
+// Features a cyberpunk-themed layout with ambient background gradients.
+
 import Banner from "./Banner.tsx";
 import ConvertWindow from "./ConvertWindow.tsx";
 import RoundingWindow from "./RoundingWindow.tsx";
 import ArithmeticWindow from "./ArithmeticWindow.tsx";
 
+// Root application component
 function App() {
   return (
     <div className="relative min-h-screen flex flex-col items-center p-4 md:p-8 gap-8">

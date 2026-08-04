@@ -1,3 +1,8 @@
+// RoundingWindow.tsx
+// Overview:
+// Component implementing four decimal rounding methods (chopping, round up, round down, and round to nearest ties to even)
+// Supports both decimal and binary input formats with target digit specification.
+
 import { useState } from "react";
 
 function RoundingWindow() {
@@ -14,6 +19,7 @@ function RoundingWindow() {
   const [isError, setError] = useState(false);
   const [errorText, setErrorText] = useState("");
 
+  // Parse binary string to decimal number (handles sign and fractional parts)
   function parseBinaryToDecimal(binStr: string) {
     if (!binStr) return 0;
 
@@ -23,7 +29,7 @@ function RoundingWindow() {
 
     let num = parseInt(intPart || "0", 2);
 
-    // Add fractional bits (1/2, 1/4, 1/8, etc.)
+    // Add fractional binary bits (1/2, 1/4, 1/8, etc.)
     for (let i = 0; i < fracPart.length; i++) {
       if (fracPart[i] === "1") {
         num += Math.pow(2, -(i + 1));
@@ -33,7 +39,7 @@ function RoundingWindow() {
     return isNegative ? -num : num;
   }
 
-  // Converts a shifted integer like 12 back to "110.0" (if shifted by 1)
+  // Converts a shifted integer back to binary string with proper decimal placement
   function formatShiftedIntToBinary(intVal: number, digits: number) {
     if (digits <= 0) return intVal.toString(2);
 
@@ -44,12 +50,14 @@ function RoundingWindow() {
       binStr = "0" + binStr;
     }
 
-    // Insert the dot
+    // Insert the decimal point at the correct position
     const insertPos = binStr.length - digits;
     const result = binStr.slice(0, insertPos) + "." + binStr.slice(insertPos);
 
     return intVal < 0 ? "-" + result : result;
   }
+
+  // Compute chopped value (truncation without rounding)
   function computeChopped() {
     const index = inputValue.indexOf(".");
 
@@ -67,10 +75,13 @@ function RoundingWindow() {
     setChoppedValue(chopped);
   }
 
+  // Check if input is a valid binary string (optional sign, integer and fractional parts)
   function isBinary(str: string) {
     const binaryRegex = /^-?[01]+(\.[01]+)?$/;
     return binaryRegex.test(str);
   }
+
+  // Compute round up value (ceiling)
   function computeRoundUp() {
     if (inputFormat === "binary") {
       const num = parseBinaryToDecimal(inputValue);
@@ -85,6 +96,7 @@ function RoundingWindow() {
     setRoundUpValue(String(result));
   }
 
+  // Compute round down value (floor)
   function computeRoundDown() {
     if (inputFormat === "binary") {
       const num = parseBinaryToDecimal(inputValue);
@@ -99,6 +111,7 @@ function RoundingWindow() {
     setRoundDownValue(String(result));
   }
 
+  // Compute round-to-nearest, ties to even value
   function computeRoundNTE() {
     if (inputFormat === "binary") {
       const num = parseBinaryToDecimal(inputValue);
@@ -137,6 +150,7 @@ function RoundingWindow() {
     setRoundNTEValue(String(result));
   }
 
+  // Main compute handler with comprehensive input validation
   function compute() {
     // If all inputs are blank, do nothing (no calculation, no error)
     if (inputValue === "" && targetDigits === "") {
@@ -191,6 +205,7 @@ function RoundingWindow() {
     setIsComputed(true);
   }
 
+  // Render component UI
   return (
     <div className="cyber-panel flex flex-col items-center w-full max-w-3xl mx-auto">
       <h2 className="cyber-panel-title">
@@ -218,6 +233,7 @@ function RoundingWindow() {
   );
 }
 
+// Input form component for rounding parameters
 function InputWindow({
   inputFormat,
   setInputFormat,
@@ -300,6 +316,7 @@ function InputWindow({
   );
 }
 
+// Result display component showing all four rounding methods
 function ResultWindow({
   choppedValue,
   roundUpValue,
@@ -313,7 +330,7 @@ function ResultWindow({
 }) {
   return (
     <div className="flex flex-col items-center mt-6 w-full">
-      {/* Chopped */}
+      {/* Chopped result */}
       <div className="w-full mb-4">
         <label className="cyber-label flex items-center gap-2">
           <span className="text-cyan-400">Chopped:</span>
@@ -323,7 +340,7 @@ function ResultWindow({
         </pre>
       </div>
 
-      {/* Rounded Up */}
+      {/* Rounded up result */}
       <div className="w-full mb-3">
         <label className="cyber-label flex items-center gap-2">
           <span className="text-pink-400">Rounded Up:</span>
@@ -333,7 +350,7 @@ function ResultWindow({
         </pre>
       </div>
 
-      {/* Rounded Down */}
+      {/* Rounded down result */}
       <div className="w-full mb-3">
         <label className="cyber-label flex items-center gap-2">
           <span className="text-purple-400">Rounded Down:</span>
@@ -343,7 +360,7 @@ function ResultWindow({
         </pre>
       </div>
 
-      {/* Rounded to Nearest Ties to Even */}
+      {/* Rounded to nearest, ties to even result */}
       <div className="w-full mb-3">
         <label className="cyber-label flex items-center gap-2">
           <span className="text-emerald-400">
@@ -358,6 +375,7 @@ function ResultWindow({
   );
 }
 
+// Error display component
 function ErrorMsg({ errorText }: { errorText: string }) {
   return (
     <div className="cyber-alert mt-4 mb-4 w-full">
