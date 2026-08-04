@@ -143,7 +143,7 @@ src/
   main.tsx                    React entry point
   index.css                   Tailwind import and cyberpunk theme
   components/
-    App.tsx                   Root layout assembling the three tools
+    App.tsx                   Root layout assembling the three windows
     Banner.tsx                Page title and tagline
     ConvertWindow.tsx         Decimal to Decimal64 converter UI
     RoundingWindow.tsx        Rounding methods UI
