@@ -76,7 +76,7 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 | **Hexadecimal Division Input** | `Input Format: Hexadecimal`<br>`Operation: Division`<br>`Operand A: 2A01000000000000`<br>`Operand B: 3DFC000000000000` | ![Test 27 Input](SCREENSHOTS/GRS/GRS-4-INPUT.png)<br>![Test 27 Output](SCREENSHOTS/GRS/GRS-4-OUTPUT.png) |
 | **Number Subtracted by Itself Input** | `Input Format: Decimal`<br>`Operation: Subtraction`<br>`Operand A: 1`<br>`Operand B: 1` | ![Test 28 Input](SCREENSHOTS/GRS/GRS-5-INPUT.png)<br>![Test 28 Output](SCREENSHOTS/GRS/GRS-5-OUTPUT.png) |
 | **Zero Divided by Any Number Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 0`<br>`Operand B: 1` | ![Test 29](SCREENSHOTS/GRS/GRS-6.png) |
-| **Any Number Divided by Zero Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: `<br>`Operand B: ` | ![Test 30](SCREENSHOTS/GRS/GRS-7.png) |
+| **Any Number Divided by Zero Input** | `Input Format: Decimal`<br>`Operation: Division`<br>`Operand A: 1`<br>`Operand B: 0` | ![Test 30](SCREENSHOTS/GRS/GRS-7.png) |
 
 ## VIDEO WALKTHROUGH
 
