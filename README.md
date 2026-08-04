@@ -30,3 +30,7 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## VIDEO WALKTHROUGH
+
+The YouTube link for the video walkthrough of the project can be found [here](https://youtu.be/74KgVZBTCjI).
