@@ -243,7 +243,6 @@ the edge cases (overflow, underflow, bad input).
 - Arithmetic only takes decimal or IEEE-hex input, no binary
 - Hex operands have to be exactly 16 characters, no shorter/longer forms
 - No animation between steps — you just see the finished state tables
-- Still need to deploy a live version
 - Need to double check the repo's visibility before we submit
 
 ---
