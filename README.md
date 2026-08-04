@@ -33,7 +33,7 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 
 ## Test Cases
 
-### 1. Convert decimal to decimal-based double-precision
+### 1. Convert Decimal to Decimal-Based Double-Precision
 
 | Test Case Name | Input | Screenshot |
 | :--- | :--- | :---: |
@@ -48,6 +48,24 @@ See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rule
 | **Underflow Input** | `Decimal Input: 1`<br>`Exponent: -399` | ![Test 9](SCREENSHOTS/DECIMAL64/Decimal64-9.png) |
 | **String Input** | `Decimal Input: Hello World`<br>`Exponent: 1` | ![Test 10](SCREENSHOTS/DECIMAL64/Decimal64-10.png) |
 | **Input With One Letter** | `Decimal Input: 7531123B56574426`<br>`Exponent: 20` | ![Test 11](SCREENSHOTS/DECIMAL64/Decimal64-11.png) |
+
+### 2. Demonstrate Rounding Methods
+
+| Test Case Name | Input | Screenshot |
+| :--- | :--- | :---: |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 12](SCREENSHOTS/ROUNDING/Rounding-1.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 13](SCREENSHOTS/ROUNDING/Rounding-2.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 14](SCREENSHOTS/ROUNDING/Rounding-3.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 15](SCREENSHOTS/ROUNDING/Rounding-4.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 16](SCREENSHOTS/ROUNDING/Rounding-5.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 17](SCREENSHOTS/ROUNDING/Rounding-6.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 18](SCREENSHOTS/ROUNDING/Rounding-7.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 19](SCREENSHOTS/ROUNDING/Rounding-8.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 20](SCREENSHOTS/ROUNDING/Rounding-9.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 21](SCREENSHOTS/ROUNDING/Rounding-10.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 22](SCREENSHOTS/ROUNDING/Rounding-11.png) |
+| **Postive Decimal Input** | `Input Format: `<br>`Number: `<br>`Target Digits: ` | ![Test 23](SCREENSHOTS/ROUNDING/Rounding-12.png) |
+
 
 ## VIDEO WALKTHROUGH
 
